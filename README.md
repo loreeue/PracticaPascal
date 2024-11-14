@@ -65,6 +65,68 @@ Si elige Alumnos, el sistema le mostrará un menú con las siguientes opciones:
     7. Cargar información del colegio. Carga desde el fichero binario colegio.dat la información correspondiente al colegio que se encuentra en el fichero. Está opción eliminará toda la información previa. Esta función se ejecuta al iniciar el programa (previa consulta al usuario) y también desde el menú.
 
 ## TIPOS DE DATOS A UTILIZAR
+```pascal
+CONST
+MAXALUMNOS = 25; {número máximo de alumnos}
+MAXTUTORES = 15; {número máximo de tutores}
+MAXAULAS = 10; {número máximo de aulas}
+EDADMINIMA = 3;
+EDADMAXIMA = 12;
+
+TYPE
+{tipo Alumno}
+tAlumno = RECORD
+nombre: string;
+apellidos: string;
+numMatricula: integer;
+telefonoContacto: string;
+annoNacimiento: integer;
+END;
+
+{tipo Tutor}
+tTutor = RECORD
+nombre: string;
+especialidad: string;
+END;
+
+{tipo lista de alumnos}
+tIndiceAlumno = 1..MAXALUMNOS;
+tListaAlumnos = ARRAY [tIndiceAlumno] OF tAlumno;
+
+{tipo Aula}
+tAula = RECORD
+capacidadMaxima:integer;
+numeroAlumnos: integer;
+alumnos : tListaAlumnos;
+edad: integer;
+tutor: tTutor;
+END;
+
+{tipo lista de tutores}
+tIndiceTutor = 1..MAXTUTORES;
+tListaTutores = ARRAY [tIndiceTutor] OF tTutor;
+
+{Array parcialmente lleno para tutores}
+tTutores = RECORD
+listadoTutores: tListaTutores;
+tope: integer;
+END;
+
+{tipo lista de Aulas}
+tIndiceAula = 1..MAXAULAS;
+tListaAulas = ARRAY [tIndiceAula] OF tAula;
+
+{tipo Colegio. Array parcialmente lleno para aulas}
+tColegio = RECORD
+aulas: tListaAulas;
+aulasAbiertas: integer;
+nombreColegio: string;
+END;
+
+{tipo archivos binarios}
+tArchivoTutores = FILE OF tTutor;
+tArchivoColegio = FILE OF tColegio;
+```
 
 
 ## AUTORES
